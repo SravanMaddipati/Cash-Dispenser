@@ -48,7 +48,7 @@ public class CashDispenserController {
 	@ApiOperation(value = "Total Balance", notes = "Total available balance")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "SUCCESS", response = Integer.class),
 			@ApiResponse(code = 500, message = "Unexpected error occured") })
-	@RequestMapping(value = "/totalbalance/", method = RequestMethod.GET)
+	@RequestMapping(value = "/totalbalance", method = RequestMethod.GET)
 	public int getAvailableBalance() throws CashDispenserException {
 		return cashDispenserService.getAvailableBalance();
 
@@ -57,7 +57,7 @@ public class CashDispenserController {
 	@ApiOperation(value = "Available Denominations", notes = "Total available Denominations")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "SUCCESS", response = DenominationResponse.class),
 			@ApiResponse(code = 500, message = "Unexpected error occured") })
-	@RequestMapping(value = "/availabledenominations/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/availabledenominations", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public DenominationResponse getAvailableDenominations() throws CashDispenserException {
 		return cashDispenserService.getAvailableDenominations();
 

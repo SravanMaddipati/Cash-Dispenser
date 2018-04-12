@@ -16,6 +16,20 @@ public class DenominationResponse implements Serializable {
 
 	private String message = "";
 
+	/**
+	 * @return the message
+	 */
+	public String getMessage() {
+		return message;
+	}
+
+	/**
+	 * @return the avaiableNotes
+	 */
+	public HashMap<Integer, Integer> getAvaiableNotes() {
+		return avaiableNotes;
+	}
+
 	HashMap<Integer, Integer> avaiableNotes = new HashMap<>();
 
 	/**

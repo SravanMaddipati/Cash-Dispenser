@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.cash.dispenser.common.CashDispenserException;
+import com.cash.dispenser.model.CashDispenserResponse;
 import com.cash.dispenser.model.DenominationResponse;
 import com.cash.dispenser.service.impl.CashDispenserService;
 
@@ -34,22 +35,22 @@ public class CashdispenserApplicationTests {
 	@Test
 	public void positiveTestDispenseAmount() throws CashDispenserException {
 		int amount = 100;
-		String response = cashDispenserService.cashWithdrawal(amount);
-		Assert.assertEquals(SUCCESS_MESSAGE, response);
+		CashDispenserResponse response = cashDispenserService.cashWithdrawal(amount);
+		Assert.assertEquals(SUCCESS_MESSAGE, response.getMessage());
 	}
 
 	@Test
 	public void NegativeTestDispenseAmount() throws CashDispenserException {
 		int amount = 606;
-		String response = cashDispenserService.cashWithdrawal(amount);
-		Assert.assertEquals(ERROR_MESSAGE, response);
+		CashDispenserResponse response = cashDispenserService.cashWithdrawal(amount);
+		Assert.assertEquals(ERROR_MESSAGE, response.getMessage());
 	}
 
 	@Test
 	public void NegativeTest2DispenseAmount() throws CashDispenserException {
 		int amount = 200000;
-		String response = cashDispenserService.cashWithdrawal(amount);
-		Assert.assertEquals(ERROR_MESSAGE_EXCESS + amount, response);
+		CashDispenserResponse response = cashDispenserService.cashWithdrawal(amount);
+		Assert.assertEquals(ERROR_MESSAGE_EXCESS + amount, response.getMessage());
 	}
 
 }

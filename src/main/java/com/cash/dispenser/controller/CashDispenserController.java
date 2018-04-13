@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cash.dispenser.common.CashDispenserException;
+import com.cash.dispenser.model.CashDispenserResponse;
 import com.cash.dispenser.model.DenominationResponse;
 import com.cash.dispenser.service.CashDispenserServiceI;
 
@@ -39,7 +40,7 @@ public class CashDispenserController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "SUCCESS", response = String.class),
 			@ApiResponse(code = 500, message = "Unexpected error occured") })
 	@RequestMapping(value = "/withdrawcash/{amount}", method = RequestMethod.PUT)
-	public String cashWithdrawal(@PathVariable int amount) throws CashDispenserException {
+	public CashDispenserResponse cashWithdrawal(@PathVariable int amount) throws CashDispenserException {
 		LOGGER.info("Cash Dispenser Controller call : Dispense Amount method" + amount);
 		return cashDispenserService.cashWithdrawal(amount);
 
@@ -49,7 +50,7 @@ public class CashDispenserController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "SUCCESS", response = Integer.class),
 			@ApiResponse(code = 500, message = "Unexpected error occured") })
 	@RequestMapping(value = "/totalbalance", method = RequestMethod.GET)
-	public int getAvailableBalance() throws CashDispenserException {
+	public CashDispenserResponse getAvailableBalance() throws CashDispenserException {
 		return cashDispenserService.getAvailableBalance();
 
 	}

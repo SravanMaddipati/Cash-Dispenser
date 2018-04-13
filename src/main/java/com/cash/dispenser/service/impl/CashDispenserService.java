@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.cash.dispenser.common.CashDispenserException;
+import com.cash.dispenser.model.CashDispenserResponse;
 import com.cash.dispenser.model.Data;
 import com.cash.dispenser.model.DenominationResponse;
 import com.cash.dispenser.service.CashDispenserServiceI;
@@ -29,13 +30,17 @@ public class CashDispenserService implements CashDispenserServiceI {
 	 * @see com.cash.dispenser.service.CashDispenserServiceI#cashWithdrawal(int)
 	 */
 	@Override
-	public String cashWithdrawal(int amount) throws CashDispenserException {
+	public CashDispenserResponse cashWithdrawal(int amount) throws CashDispenserException {
 		LOGGER.info("Cash Withdrawal Service call with Amount : " + amount);
-		int totalAvailableBalance = getAvailableBalance();
+		CashDispenserResponse resp = new CashDispenserResponse();
+		resp.setAmount(amount);
+		CashDispenserResponse totalAvailableBalance = getAvailableBalance();
+		int availableBalance = totalAvailableBalance.getAmount();
 		if (amount % 10 != 0) {
-			return "Please enter the amount in multiples of 10";
+			resp.setMessage("Please enter the amount in multiples of 10");
+			return resp;
 		} else {
-			if (amount <= totalAvailableBalance) {
+			if (amount <= availableBalance) {
 				for (int i = 0; i < Data.denominationsAccepted.length; i++) {
 					if (Data.denominationsAccepted[i] <= amount) {
 						int noteCount = amount / Data.denominationsAccepted[i];
@@ -44,7 +49,7 @@ public class CashDispenserService implements CashDispenserServiceI {
 									: noteCount;
 							Data.availableDenominations[i] = noteCount >= Data.availableDenominations[i] ? 0
 									: Data.availableDenominations[i] - noteCount;
-							totalAvailableBalance = totalAvailableBalance - (count[i] * Data.denominationsAccepted[i]);
+							availableBalance = availableBalance - (count[i] * Data.denominationsAccepted[i]);
 							amount = amount - (count[i] * Data.denominationsAccepted[i]);
 						}
 					}
@@ -52,9 +57,11 @@ public class CashDispenserService implements CashDispenserServiceI {
 
 			} else {
 				LOGGER.info("Cash Withdrawal Service unable to Process Amount : " + amount);
-				return "Unable to Dispense the Amount Entered : " + amount;
+				resp.setMessage("Unable to Dispense the Amount Entered : " + amount);
+				return resp;
 			}
-			return "Successfull Withdrawal";
+			resp.setMessage("Successfull Withdrawal");
+			return resp;
 		}
 		// return null;
 	}
@@ -63,14 +70,17 @@ public class CashDispenserService implements CashDispenserServiceI {
 	 * @see com.cash.dispenser.service.CashDispenserServiceI#getAvailableBalance()
 	 */
 	@Override
-	public int getAvailableBalance() throws CashDispenserException {
+	public CashDispenserResponse getAvailableBalance() throws CashDispenserException {
+		CashDispenserResponse availableBalanceResp = new CashDispenserResponse();
 		LOGGER.info("getAvailableBalance service call");
 		int availableBalance = 0;
 		for (int i = 0; i < Data.availableDenominations.length; i++) {
 			availableBalance = availableBalance + Data.availableDenominations[i] * Data.denominationsAccepted[i];
 		}
+		availableBalanceResp.setAmount(availableBalance);
+		availableBalanceResp.setMessage("SUCCESS");
 		LOGGER.info("getAvailableBalance service call, available Balance = " + availableBalance);
-		return availableBalance;
+		return availableBalanceResp;
 	}
 
 	/**
@@ -84,7 +94,7 @@ public class CashDispenserService implements CashDispenserServiceI {
 		for (int i = 0; i < Data.denominationsAccepted.length; i++) {
 			availableNotes.put(Data.denominationsAccepted[i], Data.availableDenominations[i]);
 		}
-		response.setMessage("Sucess");
+		response.setMessage("SUCCESS");
 		response.setAvaiableNotes(availableNotes);
 		LOGGER.info("getAvailableDenominations service call, available Denominations = " + availableNotes);
 		return response;

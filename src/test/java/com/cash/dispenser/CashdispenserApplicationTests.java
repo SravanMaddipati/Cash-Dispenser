@@ -20,7 +20,8 @@ public class CashdispenserApplicationTests {
 
 	private static final String SUCCESS_MESSAGE = "Successfull Withdrawal";
 	private static final String ERROR_MESSAGE = "Please enter the amount in multiples of 10";
-	private static final String ERROR_MESSAGE_EXCESS = "Unable to Dispense the Amount Entered : ";
+	private static final String ERROR_MESSAGE_EXCESS_AMOUNT = "Unable to Dispense the Amount Entered : ";
+	private static final String ERROR_MESSAGE_NEGATIVE_AMOUNT = "Cannot Procees the amount Entered";
 
 	@Autowired
 	CashDispenserService cashDispenserService;
@@ -40,17 +41,24 @@ public class CashdispenserApplicationTests {
 	}
 
 	@Test
-	public void NegativeTestDispenseAmount() throws CashDispenserException {
+	public void oddBalanceTestDispenseAmount() throws CashDispenserException {
 		int amount = 606;
 		CashDispenserResponse response = cashDispenserService.cashWithdrawal(amount);
 		Assert.assertEquals(ERROR_MESSAGE, response.getMessage());
 	}
 
 	@Test
-	public void NegativeTest2DispenseAmount() throws CashDispenserException {
+	public void excessAmountTestDispenseAmount() throws CashDispenserException {
 		int amount = 200000;
 		CashDispenserResponse response = cashDispenserService.cashWithdrawal(amount);
-		Assert.assertEquals(ERROR_MESSAGE_EXCESS + amount, response.getMessage());
+		Assert.assertEquals(ERROR_MESSAGE_EXCESS_AMOUNT + amount, response.getMessage());
+	}
+	
+	@Test
+	public void negativeAmountTestDispenseAmount() throws CashDispenserException {
+		int amount = -100;
+		CashDispenserResponse response = cashDispenserService.cashWithdrawal(amount);
+		Assert.assertEquals(ERROR_MESSAGE_NEGATIVE_AMOUNT, response.getMessage());
 	}
 
 }

@@ -1927,3 +1927,33 @@
 2018-04-13 11:31:25.970  INFO 15260 --- [main] c.c.d.service.impl.CashDispenserService  : getAvailableBalance service call
 2018-04-13 11:31:25.970  INFO 15260 --- [main] c.c.d.service.impl.CashDispenserService  : getAvailableBalance service call, available Balance = 167900
 2018-04-13 11:31:25.973  INFO 15260 --- [Thread-2] o.s.w.c.s.GenericWebApplicationContext   : Closing org.springframework.web.context.support.GenericWebApplicationContext@1e1a0406: startup date [Fri Apr 13 11:31:25 IST 2018]; root of context hierarchy
+2018-04-13 11:33:23.963  INFO 7088 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-04-13 11:33:23.963  INFO 7088 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-04-13 11:33:23.965  INFO 7088 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 2 ms
+2018-04-13 11:33:23.966  INFO 7088 --- [http-nio-8080-exec-1] c.c.d.service.impl.CashDispenserService  : getAvailableBalance service call
+2018-04-13 11:33:23.967  INFO 7088 --- [http-nio-8080-exec-1] c.c.d.service.impl.CashDispenserService  : getAvailableBalance service call, available Balance = 168000
+2018-04-13 11:33:26.165  INFO 7088 --- [http-nio-8080-exec-2] c.c.d.c.CashDispenserController          : Cash Dispenser Controller call : Dispense Amount method-100
+2018-04-13 11:33:26.165  INFO 7088 --- [http-nio-8080-exec-2] c.c.d.service.impl.CashDispenserService  : Cash Withdrawal Service call with Amount : -100
+2018-04-13 11:33:26.165  INFO 7088 --- [http-nio-8080-exec-2] c.c.d.service.impl.CashDispenserService  : getAvailableBalance service call
+2018-04-13 11:33:26.165  INFO 7088 --- [http-nio-8080-exec-2] c.c.d.service.impl.CashDispenserService  : getAvailableBalance service call, available Balance = 168000
+2018-04-13 11:33:31.422  INFO 7088 --- [http-nio-8080-exec-4] c.c.d.c.CashDispenserController          : Cash Dispenser Controller call : Dispense Amount method100
+2018-04-13 11:33:31.422  INFO 7088 --- [http-nio-8080-exec-4] c.c.d.service.impl.CashDispenserService  : Cash Withdrawal Service call with Amount : 100
+2018-04-13 11:33:31.422  INFO 7088 --- [http-nio-8080-exec-4] c.c.d.service.impl.CashDispenserService  : getAvailableBalance service call
+2018-04-13 11:33:31.422  INFO 7088 --- [http-nio-8080-exec-4] c.c.d.service.impl.CashDispenserService  : getAvailableBalance service call, available Balance = 168000
+2018-04-13 11:33:37.656  INFO 7088 --- [http-nio-8080-exec-3] c.c.d.service.impl.CashDispenserService  : getAvailableDenominations service call
+2018-04-13 11:33:37.656  INFO 7088 --- [http-nio-8080-exec-3] c.c.d.service.impl.CashDispenserService  : getAvailableDenominations service call, available Denominations = {50=100, 500=100, 100=99, 20=100, 1000=100, 10=100}
+2018-04-13 11:33:43.114  INFO 7088 --- [http-nio-8080-exec-5] c.c.d.c.CashDispenserController          : Cash Dispenser Controller call : Dispense Amount method100
+2018-04-13 11:33:43.114  INFO 7088 --- [http-nio-8080-exec-5] c.c.d.service.impl.CashDispenserService  : Cash Withdrawal Service call with Amount : 100
+2018-04-13 11:33:43.114  INFO 7088 --- [http-nio-8080-exec-5] c.c.d.service.impl.CashDispenserService  : getAvailableBalance service call
+2018-04-13 11:33:43.114  INFO 7088 --- [http-nio-8080-exec-5] c.c.d.service.impl.CashDispenserService  : getAvailableBalance service call, available Balance = 167900
+2018-04-13 11:33:46.256  INFO 7088 --- [http-nio-8080-exec-6] c.c.d.service.impl.CashDispenserService  : getAvailableBalance service call
+2018-04-13 11:33:46.257  INFO 7088 --- [http-nio-8080-exec-6] c.c.d.service.impl.CashDispenserService  : getAvailableBalance service call, available Balance = 167800
+2018-04-13 11:33:47.445  INFO 7088 --- [http-nio-8080-exec-7] c.c.d.service.impl.CashDispenserService  : getAvailableBalance service call
+2018-04-13 11:33:47.445  INFO 7088 --- [http-nio-8080-exec-7] c.c.d.service.impl.CashDispenserService  : getAvailableBalance service call, available Balance = 167800
+2018-04-13 11:33:48.556  INFO 7088 --- [http-nio-8080-exec-8] c.c.d.service.impl.CashDispenserService  : getAvailableBalance service call
+2018-04-13 11:33:48.556  INFO 7088 --- [http-nio-8080-exec-8] c.c.d.service.impl.CashDispenserService  : getAvailableBalance service call, available Balance = 167800
+2018-04-13 11:33:51.063  INFO 7088 --- [http-nio-8080-exec-10] c.c.d.service.impl.CashDispenserService  : getAvailableDenominations service call
+2018-04-13 11:33:51.063  INFO 7088 --- [http-nio-8080-exec-10] c.c.d.service.impl.CashDispenserService  : getAvailableDenominations service call, available Denominations = {50=100, 500=100, 100=98, 20=100, 1000=100, 10=100}
+2018-04-13 11:34:27.304  INFO 7088 --- [Thread-166] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@40c6f087: startup date [Fri Apr 13 11:30:55 IST 2018]; root of context hierarchy
+2018-04-13 11:34:27.306  INFO 7088 --- [Thread-166] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2018-04-13 11:34:27.306  INFO 7088 --- [Thread-166] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
